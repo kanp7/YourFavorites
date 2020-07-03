@@ -1,24 +1,35 @@
-# README
+# <アプリ名>
+Your　Favorites
+## サイト概要
+あなたのお気に入りを紹介するSNSサイトです。  
+本、映画などの感想を投稿し、他のユーザーと感動体験をシェアしましょう。  
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
+### サイトテーマ
+お気に入りを紹介して、感動体験を共有する。  
+アウトプットの場として活用し、内容を記憶に定着させる。  
 
-* Ruby version
+### テーマを選んだ理由
+1.お気に入りの感動体験を他人と共有したい。  
+本や映画で感動した後、誰か他の人とこの感動を共有したいと思うことが多々あった。  
+自分の趣味嗜好が似ている人の感想などをすぐに知ることができると良いなと考えた。  
+また、会話の中でオススメの本や映画の話をすることがあり、共通の話題としての有用性を感じた為。
 
-* System dependencies
+2.自分の記録として活用したい。
+昔読んだ本や、見た映画に感動したことは覚えているが、そのポイントが思い出せない事がある。  
+何歳の頃に、なぜ自分が感動したのか記録していれば、今の自分を形成しているものを把握することができる。  
+また、内容の要約や感想を文字としてアウトプットすることで、記憶の定着効果が期待できる。
 
-* Configuration
+### ターゲットユーザ
+全年齢対象、本や映画等が好きな人、メモとして活用したい人、趣味嗜好が似ている人を探したい人
 
-* Database creation
+### 主な利用シーン
+話題の映画を見た後に他の人の感想を調べたり、自分の感想を投稿する。  
+有益な本の内容を要約する。  
+憧れの人の本棚を見て、知識を吸収する。
+## 設計書
 
-* Database initialization
+### 機能一覧
+<https://docs.google.com/spreadsheets/d/1oAcagboSqszoLOSVnDQ9la8bcsMyKfhrwMMS5Xd_CU8/edit?usp=sharing>
 
-* How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
