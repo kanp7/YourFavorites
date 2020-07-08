@@ -1,0 +1,2 @@
+class MovieCategory < Category
+end

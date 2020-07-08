@@ -1,0 +1,2 @@
+class BookCategory < Category
+end
