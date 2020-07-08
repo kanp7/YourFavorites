@@ -1,0 +1,2 @@
+class BookGenre < Genre
+end
