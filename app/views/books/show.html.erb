@@ -1,0 +1,10 @@
+<h1>投稿詳細</h1>
+
+<%= @book.title %>
+<%= @book.author %>
+<%= @book.subject %>
+<%= @book.body %>
+
+<%= link_to "編集", edit_book_path(@book) %>
+<%= link_to "削除", book_path(@book), method: :delete, data: {confirm: "本当に削除しますか？"} %>
+

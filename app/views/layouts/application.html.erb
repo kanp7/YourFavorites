@@ -10,12 +10,30 @@
   </head>
 
   <body>
-    <% if user_signed_in? %>
-      <%= link_to "logout", destroy_user_session_path, method: :delete %>
-    <% else %>
-      <%= link_to "sign_up", new_user_registration_path %>
-      <%= link_to "login", new_user_session_path %>
-    <% end %>
+    <header class="navbar navbar-fixed-top navbar-inverse">
+      <div class="conteiner">
+        <nav class="nav navbar-nav navbar-left">
+          <span>YourFavorites</span>
+        </nav>
+        <nav>
+        <% if user_signed_in? %>
+          <%= link_to "Mypage", user_path(current_user) %>
+          <%= link_to "logout", destroy_user_session_path, method: :delete %>
+          <%= link_to "Books", books_path %>
+          <%= link_to "Movies", movies_path %>
+          <%#= link_to "support" %>
+        <% else %>
+          <%= link_to "sign_up", new_user_registration_path %>
+          <%= link_to "login", new_user_session_path %>
+          <%= link_to "Books", books_path %>
+          <%= link_to "Movies", movies_path %>
+          <%#= link_to "support" %>
+        <% end %>
+        </nav>
+      </div>
+    </header><!-- /header -->
+
+    <%= flash[:notice] %>
 
 
     <%= yield %>

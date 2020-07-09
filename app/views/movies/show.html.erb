@@ -1,0 +1,9 @@
+<h1>投稿詳細</h1>
+
+<%= @movie.title %>
+<%= @movie.author %>
+<%= @movie.subject %>
+<%= @movie.body %>
+<%= link_to "編集", edit_movie_path(@movie) %>
+<%= link_to "削除", movie_path(@movie), method: :delete, data: {confirm: "本当に削除しますか？"} %>
+

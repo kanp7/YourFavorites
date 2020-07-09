@@ -1,0 +1,27 @@
+<h2>Mypage</h2>
+<%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg',fallback: "no_image.jpg",size: '100x100' %>
+<table class="table">
+	<tbody>
+		<tr>
+			<th>名前</th>
+			<th><%= @user.name %></th>
+		</tr>
+		<tr>
+			<th>自己紹介</th>
+			<th><%= @user.introduction %></th>
+		</tr>
+	</tbody>
+</table>
+
+<% if @user.id == current_user.id %>
+	<div>
+		<%= link_to "登録情報編集", edit_user_path(@user) %>
+	</div>
+<% end %>
+
+<div>
+	<%= link_to "本の感想を投稿", new_book_path %>
+</div>
+<div>
+	<%= link_to "映画の感想を投稿", new_movie_path %>
+</div>

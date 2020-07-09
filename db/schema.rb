@@ -99,6 +99,7 @@ ActiveRecord::Schema.define(version: 2020_07_08_084920) do
 
   create_table "posts", force: :cascade do |t|
     t.string "type"
+    t.integer "user_id"
     t.integer "category_id"
     t.string "title"
     t.string "author"
