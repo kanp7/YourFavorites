@@ -5,6 +5,8 @@
 <%= @book.subject %>
 <%= @book.body %>
 
-<%= link_to "編集", edit_book_path(@book) %>
-<%= link_to "削除", book_path(@book), method: :delete, data: {confirm: "本当に削除しますか？"} %>
+<% if @book.user == current_user %>
+	<%= link_to "編集", edit_book_path(@book), class: "btn btn-primary" %>
+	<%= link_to "削除", book_path(@book), method: :delete, data: {confirm: "本当に削除しますか？"}, class: "btn btn-primary" %>
+<% end %>
 
