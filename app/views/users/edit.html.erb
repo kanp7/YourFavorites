@@ -1,0 +1,23 @@
+<h2>登録情報変更</h2>
+
+<%= form_for @user do |f| %>
+
+	<div>
+		<%= f.label :name %>
+		<%= f.text_field :name %>
+	</div>
+
+	<div>
+		<%= f.label :image %>
+		<%= f.attachment_field :profile_image %>
+	</div>
+
+	<div>
+		<%= f.label :introduction %>
+		<%= f.text_area :introduction %>
+	</div>
+
+	<div>
+		<%= f.submit "更新" %>
+	</div>
+<% end %>
