@@ -14,6 +14,7 @@ class MoviesController < ApplicationController
 
   def new
   	@movie = Movie.new
+    @movie_categories = MovieCategory.all
   end
 
   def create
@@ -29,6 +30,7 @@ class MoviesController < ApplicationController
 
   def edit
   	@movie = Movie.find(params[:id])
+    @movie_categories = MovieCategory.all
   end
 
   def update
@@ -50,7 +52,7 @@ class MoviesController < ApplicationController
 
   private
 	  def movie_params
-	  	params.require(:movie).permit(:title, :author, :subject, :body, :rating)
+	  	params.require(:movie).permit(:title, :author, :subject, :body, :rating, :category_id)
 	  end
 
 	  def correct_user
