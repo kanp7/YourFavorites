@@ -9,3 +9,21 @@
 <%= link_to "編集", edit_movie_path(@movie), class: "btn btn-primary" %>
 <%= link_to "削除", movie_path(@movie), method: :delete, data: {confirm: "本当に削除しますか？"}, class: "btn btn-primary" %>
 <% end %>
+
+<% @movie.comments.each do |movie_comment| %>
+	<%= movie_comment.comment %>
+
+	<% if movie_comment.user == current_user %>
+		<div>
+			<%= link_to "削除",movie_comment_path(movie_id: @movie.id, id: movie_comment.id),method: :delete, class: "btn betn-danger" %>
+		</div>
+	<% end %>
+<% end %>
+
+<!-- コメント送信フォーム -->
+<div>
+	<%= form_for [@movie, @comment] do |f| %>
+		<%= f.text_area :comment, class: "form-control",placeholder: "コメントをここに" %>
+		<%= f.submit "送信する", class: "btn btn-lg btn-base-1 mt-20 pull-right" %>
+	<% end %>
+</div>

@@ -1,17 +1,28 @@
 class CommentsController < ApplicationController
 
 	def create
-		@book = Book.find(params[:book_id])
 		comment = Comment.new(comment_params)
 		comment.user_id = current_user.id
-		comment.post_id = @book.id
-		comment.save
-		redirect_to book_path(@book)
+		if params[:book_id]
+			@book = Book.find(params[:book_id])
+			comment.post_id = @book.id
+			comment.save
+			redirect_to book_path(@book)
+		else
+			@movie = Movie.find(params[:movie_id])
+			comment.post_id = @movie.id
+			comment.save
+			redirect_to movie_path(@movie)
+		end
 	end
 
 	def destroy
 		Comment.find_by(id: params[:id]).destroy
-		redirect_to book_path(params[:book_id])
+		if params[:book_id]
+			redirect_to book_path(params[:book_id])
+		else
+			redirect_to movie_path(params[:movie_id])
+		end
 	end
 
 	private
