@@ -3,10 +3,29 @@
 <%= @book.title %>
 <%= @book.author %>
 <%= @book.subject %>
-<%= @book.body %>
+<%= @book.body %><br><br>
+
 
 <% if @book.user == current_user %>
 	<%= link_to "編集", edit_book_path(@book), class: "btn btn-primary" %>
 	<%= link_to "削除", book_path(@book), method: :delete, data: {confirm: "本当に削除しますか？"}, class: "btn btn-primary" %>
 <% end %>
+
+<% @book.comments.each do |book_comment| %>
+	<%= book_comment.comment %>
+
+	<% if book_comment.user == current_user %>
+		<div>
+			<%= link_to "削除",book_comment_path(book_id: @book.id, id: book_comment.id),method: :delete, class: "btn betn-danger" %>
+		</div>
+	<% end %>
+<% end %>
+
+<!-- コメント送信フォーム -->
+<div>
+	<%= form_for [@book, @comment] do |f| %>
+		<%= f.text_area :comment, class: "form-control",placeholder: "コメントをここに" %>
+		<%= f.submit "送信する", class: "btn btn-lg btn-base-1 mt-20 pull-right" %>
+	<% end %>
+</div>
 
