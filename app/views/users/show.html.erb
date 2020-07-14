@@ -10,6 +10,10 @@
 			<th>自己紹介</th>
 			<th><%= @user.introduction %></th>
 		</tr>
+		<tr>
+			<th><%= link_to @user.following.count, following_user_path(@user) %> フォロー&emsp;</th>
+			<th><%= link_to @user.followers.count, followers_user_path(@user) %> フォロワー</th>
+		</tr>
 	</tbody>
 </table>
 
@@ -23,4 +27,20 @@
 	<div>
 		<%= link_to "映画の感想を投稿", new_movie_path, class: "btn btn-primary" %>
 	</div>
+<% end %>
+
+<% unless @user == current_user %>
+	<% if current_user.following?(@user) %>
+		<!-- フォロー解除するフォーム -->
+		<%= form_for(current_user.active_relationships.find_by(followed_id: @user.id),
+             html: { method: :delete }) do |f| %>
+		 <%= f.submit "Unfollow", class: "btn" %>
+		<% end %>
+	<% else %>
+		<!-- ユーザーをフォローするフォーム -->
+		<%= form_for(current_user.active_relationships.build) do |f| %>
+		  <%= hidden_field_tag :followed_id, @user.id %>
+		  <%= f.submit "Follow", class: "btn btn-primary" %>
+		<% end %>
+	<% end %>
 <% end %>
