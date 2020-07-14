@@ -17,4 +17,16 @@ class User < ApplicationRecord
   attachment :profile_image
 
   validates :name, presence: true, length: {minimum: 2, maximum: 20}
+
+  def follow(other_user)
+    following << other_user
+  end
+
+  def unfollow(other_user)
+    active_relationships.find_by(followed_id: other_user.id).destroy
+  end
+
+  def following?(other_user)
+    following.include?(other_user)
+  end
 end
