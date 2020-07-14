@@ -1,4 +1,4 @@
 class GenreRelation < ApplicationRecord
-	has_many :categories
-	has_many :genres
+	belongs_to :categories
+	belongs_to :genres
 end

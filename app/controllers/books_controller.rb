@@ -14,6 +14,7 @@ class BooksController < ApplicationController
 
   def new
   	@book = Book.new
+  	@book_categories = BookCategory.all
   end
 
   def create
@@ -29,6 +30,7 @@ class BooksController < ApplicationController
 
   def edit
   	@book = Book.find(params[:id])
+  	@book_categories = BookCategory.all
   end
 
   def update
@@ -49,7 +51,7 @@ class BooksController < ApplicationController
 
   private
 	  def book_params
-	  	params.require(:book).permit(:title, :author, :subject, :body, :rating)
+	  	params.require(:book).permit(:title, :author, :subject, :body, :rating, :category_id)
 	  end
 
 	  def correct_user

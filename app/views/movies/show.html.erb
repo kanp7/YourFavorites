@@ -4,6 +4,10 @@
 <%= @movie.author %>
 <%= @movie.subject %>
 <%= @movie.body %>
+<% unless @movie.category.nil?%>
+	<span class="badge badge-primary"><%= @movie.category.category %><br><br></span>
+<% end %>
+
 
 <% if @movie.user == current_user %>
 <%= link_to "編集", edit_movie_path(@movie), class: "btn btn-primary" %>

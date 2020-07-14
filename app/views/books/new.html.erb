@@ -17,6 +17,12 @@
 	<%= f.label :body %>
 	<%= f.text_area :body %>
 </div>
+
+<div>
+	<%= f.label :category %>
+	<%= f.collection_select(:category_id, @book_categories, :id, :category) %>
+</div>
+
 <div>
 	<%= f.submit "投稿" %>
 </div>

@@ -3,7 +3,10 @@
 <%= @book.title %>
 <%= @book.author %>
 <%= @book.subject %>
-<%= @book.body %><br><br>
+<%= @book.body %>
+<% unless @book.category.nil?%>
+	<span class="badge badge-primary"><%= @book.category.category %><br><br></span>
+<% end %>
 
 
 <% if @book.user == current_user %>

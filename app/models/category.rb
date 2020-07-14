@@ -1,4 +1,5 @@
 class Category < ApplicationRecord
-	belongs_to :post
-	belongs_to :genre_relation
+	has_many :post
+	has_many :genre_relations
+	has_many :genres, through: :genre_relations
 end
