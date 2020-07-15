@@ -1,0 +1,20 @@
+<h2>お気に入り一覧</h2>
+
+<h4>お気に入りの本</h4>
+<% @favorites.each do |favorite| %>
+	<% if favorite.post.type == "Book" %>
+		<%= favorite.post.title %><br>
+		<%= favorite.post.subject %><br>
+		<br>
+	<% end %>
+<% end %>
+
+<h4>お気に入りの映画</h4>
+<% @favorites.each do |favorite| %>
+	<% if favorite.post.type == "Movie" %>
+		<%= favorite.post.title %><br>
+		<%= favorite.post.subject %><br>
+	<br>
+	<% end %>
+<% end %>
+
