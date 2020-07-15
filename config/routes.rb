@@ -5,14 +5,17 @@ Rails.application.routes.draw do
 
   resources :books do
     resources :comments, only: [:create, :destroy]
+    resource :favorites, only: [:create, :destroy]
   end
   resources :movies do
     resources :comments, only: [:create, :destroy]
+    resource :favorites, only: [:create, :destroy]
   end
   resources :users do
   	member do
   		get :following, :followers
   	end
+  	resource :favorites, only:[:show]
   end
   resources :relationships, only:[:create, :destroy]
 

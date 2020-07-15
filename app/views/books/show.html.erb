@@ -4,6 +4,19 @@
 <%= @book.author %>
 <%= @book.subject %>
 <%= @book.body %>
+
+<% if @book.favorited_by?(current_user) %>
+	<%= link_to book_favorites_path(@book), method: :delete do %>
+	<i class="glyphicon glyphicon-star" aria-hidden="true"></i>
+	<%= @book.favorites.count %> 件のお気に入り
+	<% end %>
+<% else %>
+	<%= link_to book_favorites_path(@book), method: :post do %>
+	<i class="glyphicon glyphicon-star-empty" aria-hidden="true"></i>
+	<%= @book.favorites.count %> 件のお気に入り
+	<% end %>
+<% end %>
+
 <% unless @book.category.nil?%>
 	<span class="badge badge-primary"><%= @book.category.category %><br><br></span>
 <% end %>

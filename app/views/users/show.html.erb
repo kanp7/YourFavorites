@@ -14,6 +14,9 @@
 			<th><%= link_to @user.following.count, following_user_path(@user) %> フォロー&emsp;</th>
 			<th><%= link_to @user.followers.count, followers_user_path(@user) %> フォロワー</th>
 		</tr>
+		<tr>
+			<th><%= link_to "お気に入り", user_favorites_path(@user) %></th>
+		</tr>
 	</tbody>
 </table>
 

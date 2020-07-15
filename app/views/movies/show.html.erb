@@ -4,6 +4,19 @@
 <%= @movie.author %>
 <%= @movie.subject %>
 <%= @movie.body %>
+
+<% if @movie.favorited_by?(current_user) %>
+	<%= link_to movie_favorites_path(@movie), method: :delete do %>
+	<i class="glyphicon glyphicon-star" aria-hidden="true"></i>
+	<%= @movie.favorites.count %> 件のお気に入り
+	<% end %>
+<% else %>
+	<%= link_to movie_favorites_path(@movie), method: :post do %>
+	<i class="glyphicon glyphicon-star-empty" aria-hidden="true"></i>
+	<%= @movie.favorites.count %> 件のお気に入り
+	<% end %>
+<% end %>
+
 <% unless @movie.category.nil?%>
 	<span class="badge badge-primary"><%= @movie.category.category %><br><br></span>
 <% end %>
