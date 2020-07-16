@@ -1,20 +1,41 @@
 <h2>お気に入り一覧</h2>
 
-<h4>お気に入りの本</h4>
-<% @favorites.each do |favorite| %>
-	<% if favorite.post.type == "Book" %>
-		<%= favorite.post.title %><br>
-		<%= favorite.post.subject %><br>
-		<br>
-	<% end %>
-<% end %>
-
-<h4>お気に入りの映画</h4>
-<% @favorites.each do |favorite| %>
-	<% if favorite.post.type == "Movie" %>
-		<%= favorite.post.title %><br>
-		<%= favorite.post.subject %><br>
-	<br>
-	<% end %>
-<% end %>
+<div>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>カテゴリー</th>
+				<th>タイトル</th>
+				<th>件名</th>
+				<th>投稿者</th>
+				<th>お気に入り解除</th>
+			</tr>
+		</thead>
+		<% @favorites.each do |favorite| %>
+		<tbody>
+			<tr>
+				<% if favorite.post.type == "Book" %>
+				<td><span class="badge badge-primary"><%=favorite.post.category.category %></span></td>
+				<td><%= link_to "#{favorite.post.title}", book_path(favorite.post.id) %></td>
+				<td><%= link_to "#{favorite.post.subject}", book_path(favorite.post.id) %></td>
+				<td><%= link_to "#{favorite.post.user.name}", user_path(favorite.post.user.id) %></td>
+				<td><%= link_to book_favorites_path(favorite.post.id), method: :delete do %>
+					<i class="glyphicon glyphicon-star" aria-hidden="true"></i>
+					<% end %>
+				</td>
+				<% else %>
+				<td><span class="badge badge-primary"><%=favorite.post.category.category %></span></td>
+				<td><%= link_to "#{favorite.post.title}", movie_path(favorite.post.id) %></td>
+				<td><%= link_to "#{favorite.post.subject}", movie_path(favorite.post.id) %></td>
+				<td><%= link_to "#{favorite.post.user.name}", user_path(favorite.post.user.id) %></td>
+				<td><%= link_to movie_favorites_path(favorite.post.id), method: :delete do %>
+					<i class="glyphicon glyphicon-star" aria-hidden="true"></i>
+					<% end %>
+				</td>
+				<% end %>
+			</tr>
+		</tbody>
+		<% end %>
+	</table>
+</div>
 
