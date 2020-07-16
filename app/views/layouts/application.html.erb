@@ -39,6 +39,14 @@
 
     <%= flash[:notice] %>
 
+    <% if user_signed_in? %>
+      <%= form_tag(search_path, method: :get) do %>
+        <%= select_tag 'select_model' ,options_for_select([['ユーザー', '1'],['投稿','2']]) %>
+        <%= text_field_tag (:word) %>
+        <%= submit_tag "検索" %>
+      <% end %>
+    <% end %>
+
 
     <%= yield %>
   </body>
