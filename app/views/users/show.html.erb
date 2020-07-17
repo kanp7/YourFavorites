@@ -1,4 +1,4 @@
-<h2>Mypage</h2>
+<h2><%= @user.name %>さんのページ</h2>
 <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg',fallback: "no_image.jpg",size: '100x100' %>
 <table>
 	<tbody>
@@ -20,16 +20,20 @@
 	</tbody>
 </table>
 
-<% if @user.id == current_user.id %>
-	<div>
-		<%= link_to "登録情報編集", edit_user_path(@user) %>
-	</div>
-	<div>
-		<%= link_to "本の感想を投稿", new_book_path, class: "btn btn-primary" %>
-	</div>
-	<div>
-		<%= link_to "映画の感想を投稿", new_movie_path, class: "btn btn-primary" %>
-	</div>
+<% if user_signed_in? %>
+	<% if @user.id == current_user.id %>
+		<div>
+			<%= link_to "登録情報編集", edit_user_path(@user) %>
+		</div>
+		<div class="mypage_btn">
+			<%= link_to "本の感想を投稿", new_book_path, class: "btn btn-primary" %>
+		</div>
+		<div class="mypage_btn">
+			<%= link_to "映画の感想を投稿", new_movie_path, class: "btn btn-primary" %>
+		</div>
+	<% end %>
 <% end %>
 
 <%= render 'follow_form', user: @user %>
+
+<%= link_to "投稿一覧",user_posts_user_path(@user) %>

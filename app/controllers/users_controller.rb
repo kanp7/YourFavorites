@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-	before_action :authenticate_user!
+	before_action :authenticate_user!, only:[:edit, :update]
 	before_action :correct_user, only:[:edit, :update]
 
   def index
@@ -39,6 +39,10 @@ class UsersController < ApplicationController
     render 'show_follow'
   end
 
+  def user_posts
+    @user = User.find(params[:id])
+    @posts = Post.where(user_id: params[:id])
+  end
 
   private
 

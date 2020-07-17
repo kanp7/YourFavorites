@@ -16,10 +16,11 @@
         <td>
           <%= link_to(post.user) do %>
           <%= attachment_image_tag(post.user, :profile_image, :fill, 50, 50, fallback: "no_image.jpg") %>
+          <%= post.user.name %>
           <% end %>
         </td>
         <td><%= link_to post.title, post %></td>
-        <td><%= post.body %></td>
+        <td><%= post.subject %></td>
       </tr>
     <% end %>
   </tbody>
