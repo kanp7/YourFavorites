@@ -55,8 +55,8 @@
 <div>
 	<% if user_signed_in? %>
 		<%= form_for [@book, @comment] do |f| %>
-			<%= f.text_area :comment, class: "form-control",placeholder: "コメントをここに" %>
-			<%= f.submit "送信する", class: "btn btn-lg btn-base-1 mt-20 pull-right" %>
+			<%= f.text_area :comment, class: "form-control form-group",placeholder: "コメントをここに" %>
+			<%= f.submit "送信する", class: "btn btn-lg pull-right" %>
 		<% end %>
 	<% end %>
 </div>

@@ -4,7 +4,7 @@ class BooksController < ApplicationController
 	before_action :correct_user, only: [:edit, :update]
 
   def index
-  	@books = Book.all
+  	@books = Book.page(params[:page]).reverse_order
   end
 
   def show

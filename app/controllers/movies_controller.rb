@@ -4,7 +4,7 @@ class MoviesController < ApplicationController
 	before_action :correct_user, only: [:edit, :update]
 
   def index
-  	@movies = Movie.all
+  	@movies = Movie.page(params[:page]).reverse_order
   end
 
   def show
@@ -14,7 +14,7 @@ class MoviesController < ApplicationController
 
   def new
   	@movie = Movie.new
-    @movie_categories = MovieCategory.all
+    @movie_categories = MovieCategory.allp
   end
 
   def create

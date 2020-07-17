@@ -28,20 +28,20 @@ class UsersController < ApplicationController
   def following
     @title = "フォロー"
     @user = User.find(params[:id])
-    @users = @user.following.all
+    @users = @user.following.page(params[:page]).reverse_order
     render 'show_follow'
   end
 
   def followers
     @title = "フォロワー"
     @user = User.find(params[:id])
-    @users = @user.followers.all
+    @users = @user.followers.page(params[:page]).reverse_order
     render 'show_follow'
   end
 
   def user_posts
     @user = User.find(params[:id])
-    @posts = Post.where(user_id: params[:id])
+    @posts = Post.where(user_id: params[:id]).page(params[:page]).reverse_order
   end
 
   private

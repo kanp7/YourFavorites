@@ -1,8 +1,9 @@
 <h2><%= @select_model == '1' ? "ユーザー" : "投稿" %>検索 検索ワード: "<%= @word %>"</h2>
 
-<table class="table table-hover table-inverse">
+
 <!--postの検索結果 -->
 <% if @select_model == '2' %>
+<table class="table">
   <thead>
     <tr>
         <th>投稿者</th>
@@ -24,8 +25,11 @@
       </tr>
     <% end %>
   </tbody>
+</table>
+<%= paginate @post %>
 <!-- userの検索結果 -->
-  <% else %>
+<% else %>
+<table class="table">
   <thead>
     <tr>
       <th>名前</th>
@@ -45,5 +49,9 @@
        </tr>
     <% end %>
   </tbody>
-<% end %>
 </table>
+<%= paginate @user %>
+<% end %>
+
+
+
