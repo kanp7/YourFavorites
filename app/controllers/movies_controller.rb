@@ -14,7 +14,7 @@ class MoviesController < ApplicationController
 
   def new
   	@movie = Movie.new
-    @movie_categories = MovieCategory.allp
+    @movie_categories = MovieCategory.all
   end
 
   def create
