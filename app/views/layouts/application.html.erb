@@ -36,7 +36,15 @@
       </div>
     </header>
 
+<% if flash[:notice] %>
+  <div class="alert alert-success text-center" role="alert">
     <%= flash[:notice] %>
+  </div>
+<% elsif flash[:alert]%>
+  <div class="alert alert-danger text-center" role="alert">
+    <%= flash[:alert] %>
+  </div>
+<% end %>
 
 <!-- 検索フォーム -->
     <div class="search_form form-inline" >
