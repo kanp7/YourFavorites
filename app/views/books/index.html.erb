@@ -1,10 +1,11 @@
 <table class="table">
 	<thead>
 		<tr>
-			<th>User</th>
-			<th>Title</th>
-			<th>Author</th>
-			<th>Subject</th>
+			<th>投稿者</th>
+			<th>作品名</th>
+			<th>作者</th>
+			<th>件名</th>
+			<th>投稿日時</th>
 		</tr>
 	</thead>
 	<% @books.each do |book| %>
@@ -18,8 +19,10 @@
 			<td><%= book.title %></td>
 			<td><%= book.author %></td>
 			<td><%= book.subject %></td>
+			<td><%= book.created_at.to_s(:datetime_jp) %></td>
 			<td><%= link_to "詳細", book_path(book) %></td>
 		</tr>
 	</tbody>
 	<% end %>
 </table>
+<%= paginate @books %>

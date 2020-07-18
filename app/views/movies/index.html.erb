@@ -1,9 +1,10 @@
 <table class="table">
 	<thead>
 		<tr>
-			<th>User</th>
-			<th>Title</th>
-			<th>Subject</th>
+			<th>投稿者</th>
+			<th>作品名</th>
+			<th>件名</th>
+			<th>投稿日時</th>
 		</tr>
 	</thead>
 	<% @movies.each do |movie| %>
@@ -16,8 +17,10 @@
 			</td>
 			<td><%= movie.title %></td>
 			<td><%= movie.subject %></td>
+			<td><%= movie.created_at.to_s(:datetime_jp) %></td>
 			<td><%= link_to "詳細", movie_path(movie) %></td>
 		</tr>
 	</tbody>
 	<% end %>
 </table>
+<%= paginate @movies %>

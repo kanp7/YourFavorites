@@ -15,7 +15,7 @@
 		<tbody>
 			<tr>
 				<% if favorite.post.type == "Book" %>
-				<td><span class="badge badge-primary"><%=favorite.post.category.category %></span></td>
+				<td><span class="label label-primary"><%=favorite.post.category.category %></span></td>
 				<td><%= link_to "#{favorite.post.title}", book_path(favorite.post.id) %></td>
 				<td><%= link_to "#{favorite.post.subject}", book_path(favorite.post.id) %></td>
 				<td><%= link_to "#{favorite.post.user.name}", user_path(favorite.post.user.id) %></td>
@@ -24,7 +24,7 @@
 					<% end %>
 				</td>
 				<% else %>
-				<td><span class="badge badge-primary"><%=favorite.post.category.category %></span></td>
+				<td><span class="label label-primary"><%=favorite.post.category.category %></span></td>
 				<td><%= link_to "#{favorite.post.title}", movie_path(favorite.post.id) %></td>
 				<td><%= link_to "#{favorite.post.subject}", movie_path(favorite.post.id) %></td>
 				<td><%= link_to "#{favorite.post.user.name}", user_path(favorite.post.user.id) %></td>

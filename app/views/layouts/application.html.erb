@@ -18,36 +18,48 @@
         <nav>
           <ul class="nav navbar-nav navbar-right">
           <% if user_signed_in? %>
-            <li><%= link_to "Mypage", user_path(current_user) %></li>
-            <li><%= link_to "logout", destroy_user_session_path, method: :delete %></li>
-            <li><%= link_to "Books", books_path %></li>
-            <li><%= link_to "Movies", movies_path %></li>
+            <li><%= link_to user_path(current_user) do %><i class="glyphicon glyphicon-user"></i>&emsp;マイページ<% end %></li>
+            <li><%= link_to books_path do %><i class="glyphicon glyphicon-book"></i>&emsp;本<% end %></li>
+            <li><%= link_to movies_path do %><i class="glyphicon glyphicon-film"></i>&emsp;映像作品<% end %></li>
+            <li><%= link_to destroy_user_session_path, method: :delete do %><i class="glyphicon glyphicon-log-out"></i>&emsp;ログアウト<% end %></li>
             <%#= link_to "support" %>
           <% else %>
-            <li><%= link_to "sign_up", new_user_registration_path %></li>
-            <li><%= link_to "login", new_user_session_path %></li>
-            <li><%= link_to "Books", books_path %></li>
-            <li><%= link_to "Movies", movies_path %></li>
+            <li><%= link_to root_path do %><i class="glyphicon glyphicon-home home"></i>&emsp;Home<% end %></li>
+            <li><%= link_to new_user_registration_path do %><i class="glyphicon glyphicon-edit"></i>&emsp;新規登録</li><% end %>
+            <li><%= link_to new_user_session_path do %><i class="glyphicon glyphicon-log-in"></i>&emsp;ログイン<% end %></li>
+            <li><%= link_to books_path do %><i class="glyphicon glyphicon-book"></i>&emsp;本<% end %></li>
+           <li><%= link_to movies_path do %><i class="glyphicon glyphicon-film"></i>&emsp;映像作品<% end %></li>
             <%#= link_to "support" %>
           <% end %>
- 
           </ul>
-
         </nav>
       </div>
-    </header><!-- /header -->
+    </header>
 
+<% if flash[:notice] %>
+  <div class="alert alert-success text-center" role="alert">
     <%= flash[:notice] %>
+  </div>
+<% elsif flash[:alert]%>
+  <div class="alert alert-danger text-center" role="alert">
+    <%= flash[:alert] %>
+  </div>
+<% end %>
 
-    <% if user_signed_in? %>
+<!-- 検索フォーム -->
+    <div class="search_form form-inline" >
       <%= form_tag(search_path, method: :get) do %>
-        <%= select_tag 'select_model' ,options_for_select([['ユーザー', '1'],['投稿','2']]) %>
-        <%= text_field_tag (:word) %>
-        <%= submit_tag "検索" %>
+        <%= select_tag 'select_model' ,options_for_select([['ユーザー', '1'],['投稿','2']]),class: "form-control", style: "width: 100px;" %>
+        <%= text_field_tag (:word), "", class: "form-control",style: "width: 50%" %>
+        <%= submit_tag "検索", class: "btn btn-default" %>
       <% end %>
-    <% end %>
+    </div>
 
+    <div class="container">
+      <div class="row">
+        <%= yield %>
+      </div>
+    </div>
 
-    <%= yield %>
   </body>
 </html>

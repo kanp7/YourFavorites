@@ -13,11 +13,13 @@
 					<%= link_to "フォロワー数:#{user.followers.count}", followers_user_path(user) %>
 				</td>
 				<td>
-					<% unless user == current_user %>
-						<% if current_user.following?(user) %>
-							<%= link_to "フォロー解除", relationship_path(current_user.active_relationships.find_by(followed_id: user.id)), method: :delete, class: "btn btn-primary" %>
-						<% else %>
-							<%= link_to 'フォローする', relationships_path(followed_id: user.id), method: :post %>
+					<% if user_signed_in? %>
+						<% unless user == current_user %>
+							<% if current_user.following?(user) %>
+								<%= link_to "フォロー解除", relationship_path(current_user.active_relationships.find_by(followed_id: user.id)), method: :delete, class: "btn btn-primary" %>
+							<% else %>
+								<%= link_to 'フォローする', relationships_path(followed_id: user.id), method: :post %>
+							<% end %>
 						<% end %>
 					<% end %>
 				</td>
@@ -25,3 +27,4 @@
 			<% end %>
 		</tbody>
 	</table>
+	<%= paginate @users %>

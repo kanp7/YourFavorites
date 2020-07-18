@@ -30,6 +30,17 @@ body {
 	padding-top: 75px;
 }
 
-.btn {
+.search_form {
+	margin: 20px;
+	text-align: center
+}
+
+.mypage_btn {
 	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+/*kaminari/_paginator.html.erb*/
+.text-center {
+	text-align: center;
 }
