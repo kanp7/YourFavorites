@@ -8,6 +8,22 @@
 	<% end %>
 </h4>
 
+<div id="rate_<%= @book.id %>" class="rate">
+	<span>作品評価：<%= @book.rating %></span>
+</div>
+
+<script>
+$('#rate_<%= @book.id %>').raty({
+  size     : 36,
+  starHalf: '/assets/star-half.png',
+  starOff: '/assets/star-off.png',
+  starOn : '/assets/star-on.png',
+  readOnly: true,
+  half: true,
+  score: <%= @book.rating %>
+});
+</script>
+
 <div class="panel panel-default">
 	<div class="panel-heading">
 		<%= @book.subject %>

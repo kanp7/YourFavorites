@@ -7,6 +7,22 @@
 	<% end %>
 </h4>
 
+<div id="rate_<%= @movie.id %>" class="rate">
+	<span>作品評価：<%= @movie.rating %></span>
+</div>
+
+<script>
+$('#rate_<%= @movie.id %>').raty({
+  size     : 36,
+  starHalf: '/assets/star-half.png',
+  starOff: '/assets/star-off.png',
+  starOn : '/assets/star-on.png',
+  readOnly: true,
+  half: true,
+  score: <%= @movie.rating %>
+});
+</script>
+
 <div class="panel panel-default">
 	<div class="panel-heading">
 		<%= @movie.subject %>
