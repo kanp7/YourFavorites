@@ -13,7 +13,7 @@ class Post < ApplicationRecord
 	end
 
 	def self.search(word)
-		@post = Post.where("title LIKE? OR subject LIKE? OR author LIKE?" ,"%#{word}%", "%#{word}%", "%#{word}%")
+		Post.where("title LIKE? OR author LIKE?" ,"%#{word}%", "%#{word}%")
 	end
 
 end

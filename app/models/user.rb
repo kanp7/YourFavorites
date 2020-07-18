@@ -19,7 +19,7 @@ class User < ApplicationRecord
   validates :name, presence: true, length: {minimum: 2, maximum: 20}
 
   def self.search(word)
-    @user = User.where("name LIKE?", "%#{word}%")
+    User.where("name LIKE?", "%#{word}%")
   end
 
 
