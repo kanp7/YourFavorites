@@ -21,7 +21,7 @@ class MoviesController < ApplicationController
   	movie = Movie.new(movie_params)
   	movie.user_id = current_user.id
   	if movie.save
-  		flash[:notice] = "映画の感想を投稿しました"
+  		flash[:notice] = "映像作品の感想を投稿しました"
   		redirect_to movie_path(movie.id)
   	else
   		render "new"
@@ -36,7 +36,7 @@ class MoviesController < ApplicationController
   def update
   	movie = Movie.find(params[:id])
   	if movie.update(movie_params)
-  		flash[:notice] = "映画の感想を更新しました"
+  		flash[:notice] = "映像作品の感想を更新しました"
   		redirect_to movie_path(movie.id)
   	else
   		render "edit"

@@ -19,6 +19,22 @@
 	<%= f.collection_select(:category_id, @movie_categories, :id, :category, {prompt: "選択してください"}, class: 'form-control') %>
 </div>
 
+<div id="star" class="form-group">
+	<%= f.label :rating,'評価' %>
+	<%= f.hidden_field :rating %>
+</div>
+
+<script>
+$('#star').raty({
+  size     : 36,
+  starHalf: '/assets/star-half.png',
+  starOff: '/assets/star-off.png',
+  starOn : '/assets/star-on.png',
+  scoreName: 'movie[rating]',
+  half: true,
+});
+</script>
+
 <div>
 	<%= f.submit "投稿", class: 'btn btn-primary' %>
 </div>
