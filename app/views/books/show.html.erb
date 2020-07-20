@@ -51,21 +51,9 @@ $('#rate_<%= @book.id %>').raty({
 </div>
 
 <!-- お気に入り機能 -->
-<% if user_signed_in? %>
-	<% if @book.favorited_by?(current_user) %>
-		<%= link_to book_favorites_path(@book), method: :delete do %>
-		<i class="glyphicon glyphicon-star" aria-hidden="true"></i>
-		<%= @book.favorites.count %> 件のお気に入り
-		<% end %>
-	<% else %>
-		<%= link_to book_favorites_path(@book), method: :post do %>
-		<i class="glyphicon glyphicon-star-empty" aria-hidden="true"></i>
-		<%= @book.favorites.count %> 件のお気に入り
-		<% end %>
-	<% end %>
-<% else %>
-	<p><i class="glyphicon glyphicon-star" aria-hidden="true"></i><%= @book.favorites.count %>件のお気に入り</p>
-<% end %>
+<div id="Favorite_<%= @book.id %>">
+	<%= render 'favorites/book_favorite', book: @book %>
+</div>
 
 <!-- コメント送信フォーム -->
 <div>

@@ -49,19 +49,9 @@ $('#rate_<%= @movie.id %>').raty({
 </div>
 
 <!-- お気に入り機能 -->
-<% if user_signed_in? %>
-	<% if @movie.favorited_by?(current_user) %>
-		<%= link_to movie_favorites_path(@movie), method: :delete do %>
-		<i class="glyphicon glyphicon-star" aria-hidden="true"></i>
-		<%= @movie.favorites.count %> 件のお気に入り
-		<% end %>
-	<% else %>
-		<%= link_to movie_favorites_path(@movie), method: :post do %>
-		<i class="glyphicon glyphicon-star-empty" aria-hidden="true"></i>
-		<%= @movie.favorites.count %> 件のお気に入り
-		<% end %>
-	<% end %>
-<% end %>
+<div id="Favorite_<%= @movie.id %>">
+	<%= render 'favorites/movie_favorite', movie: @movie %>
+</div>
 
 <!-- コメント送信フォーム -->
 <div>
