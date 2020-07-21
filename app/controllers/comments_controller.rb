@@ -7,12 +7,12 @@ class CommentsController < ApplicationController
 			@book = Book.find(params[:book_id])
 			comment.post_id = @book.id
 			comment.save
-			redirect_to book_path(@book)
+			render "comments/book_comments"
 		else
 			@movie = Movie.find(params[:movie_id])
 			comment.post_id = @movie.id
 			comment.save
-			redirect_to movie_path(@movie)
+			render "comments/movie_comments"
 		end
 	end
 

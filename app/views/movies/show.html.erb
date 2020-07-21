@@ -12,15 +12,17 @@
 </div>
 
 <script>
-$('#rate_<%= @movie.id %>').raty({
-  size     : 36,
-  starHalf: '/assets/star-half.png',
-  starOff: '/assets/star-off.png',
-  starOn : '/assets/star-on.png',
-  readOnly: true,
-  half: true,
-  score: <%= @movie.rating %>
-});
+document.addEventListener("turbolinks:load", function(){
+	$('#rate_<%= @movie.id %>').raty({
+	  size     : 36,
+	  starHalf: '/assets/star-half.png',
+	  starOff: '/assets/star-off.png',
+	  starOn : '/assets/star-on.png',
+	  readOnly: true,
+	  half: true,
+	  score: <%= @movie.rating %>
+	});
+})
 </script>
 
 <div class="panel panel-default">
@@ -33,19 +35,8 @@ $('#rate_<%= @movie.id %>').raty({
 </div>
 
 <h4>コメント一覧</h4>
-<div class="panel panel-default">
-	<% @movie.comments.each do |movie_comment| %>
-	<div class= "panel">
-		<%= link_to user_path(movie_comment.user_id) do %>
-			<%= attachment_image_tag movie_comment.user, :profile_image, :fill, 40, 40, format: 'jpeg',fallback:"no_image.jpg",size:'40x40' %>
-			<%= movie_comment.user.name%>
-		<% end %>
-		<%= movie_comment.comment %>
-		<% if movie_comment.user == current_user %>
-			<%= link_to "削除",movie_comment_path(movie_id: @movie.id, id: movie_comment.id),method: :delete, class: "btn btn-danger" %>
-		<% end %>
-	</div>
-	<% end %>
+<div id="movie_comments">
+	<%= render 'comments/movie_comments', movie: @movie %>
 </div>
 
 <!-- お気に入り機能 -->
@@ -56,7 +47,7 @@ $('#rate_<%= @movie.id %>').raty({
 <!-- コメント送信フォーム -->
 <div>
 	<% if user_signed_in? %>
-		<%= form_for [@movie, @comment] do |f| %>
+		<%= form_for([@movie, @comment], data: { remote: true }) do |f| %>
 			<%= f.text_area :comment, class: "form-control form-group",placeholder: "コメントをここに" %>
 			<%= f.submit "送信する", class: "btn btn-lg pull-right" %>
 		<% end %>
