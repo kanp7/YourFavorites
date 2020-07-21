@@ -52,7 +52,13 @@
                  <% end %>
              </td>
              <td><%= user.introduction%></td>
-             <td><%= render 'users/follow_form', user: user %></td>
+             <td>
+              <% unless user == current_user %>
+                <div class="follow_form_<%= user.id %>">
+                  <%= render 'users/follow_form', user: user %>
+                </div>
+              <% end %>
+             </td>
            </tr>
         <% end %>
       <% end %>

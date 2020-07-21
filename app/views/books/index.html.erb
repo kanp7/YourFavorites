@@ -20,7 +20,7 @@
 			<td><%= book.author %></td>
 			<td><%= book.subject %></td>
 			<td><%= book.created_at.to_s(:datetime_jp) %></td>
-			<td><%= link_to "詳細", book_path(book) %></td>
+			<td><%= link_to "詳細", book_path(book), data: {"turbolinks" => false} %></td>
 		</tr>
 	</tbody>
 	<% end %>

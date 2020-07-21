@@ -18,7 +18,7 @@
 			<td><%= movie.title %></td>
 			<td><%= movie.subject %></td>
 			<td><%= movie.created_at.to_s(:datetime_jp) %></td>
-			<td><%= link_to "詳細", movie_path(movie) %></td>
+			<td><%= link_to "詳細", movie_path(movie), data: {"turbolinks" => false} %></td>
 		</tr>
 	</tbody>
 	<% end %>

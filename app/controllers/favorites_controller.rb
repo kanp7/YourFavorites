@@ -9,12 +9,12 @@ class FavoritesController < ApplicationController
 			@book = Book.find(params[:book_id])
 			favorite = current_user.favorites.new(post_id: @book.id)
 			favorite.save
-			redirect_back(fallback_location: root_path)
+			@check = "book"
 		else
 			@movie = Movie.find(params[:movie_id])
 			favorite = current_user.favorites.new(post_id: @movie.id)
 			favorite.save
-			redirect_back(fallback_location: root_path)
+			@check = "movie"
 		end
 	end
 
@@ -23,12 +23,12 @@ class FavoritesController < ApplicationController
 			@book = Book.find(params[:book_id])
 			favorite = current_user.favorites.find_by(post_id: @book.id)
 			favorite.destroy
-			redirect_back(fallback_location: root_path)
+			@check = "book"
 		else
 			@movie = Movie.find(params[:movie_id])
 			favorite = current_user.favorites.find_by(post_id: @movie.id)
 			favorite.destroy
-			redirect_back(fallback_location: root_path)
+			@check = "movie"
 		end
 	end
 

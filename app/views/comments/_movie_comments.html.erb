@@ -1,0 +1,14 @@
+<div class="panel panel-default">
+	<% @movie.comments.each do |movie_comment| %>
+	<div class= "panel">
+		<%= link_to user_path(movie_comment.user_id) do %>
+			<%= attachment_image_tag movie_comment.user, :profile_image, :fill, 40, 40, format: 'jpeg',fallback:"no_image.jpg",size:'40x40' %>
+			<%= movie_comment.user.name%>
+		<% end %>
+		<%= movie_comment.comment %>
+		<% if movie_comment.user == current_user %>
+			<%= link_to "削除",movie_comment_path(movie_id: @movie.id, id: movie_comment.id),method: :delete, remote: true, class: "btn btn-danger" %>
+		<% end %>
+	</div>
+	<% end %>
+</div>

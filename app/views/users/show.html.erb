@@ -11,8 +11,8 @@
 			<th><%= @user.introduction %></th>
 		</tr>
 		<tr>
-			<th><%= link_to @user.following.count, following_user_path(@user) %> フォロー&emsp;</th>
-			<th><%= link_to @user.followers.count, followers_user_path(@user) %> フォロワー</th>
+			<th><%= link_to @user.following.count, following_user_path(@user), class: "follow_count_#{@user.id}" %> フォロー&emsp;</th>
+			<th><%= link_to @user.followers.count, followers_user_path(@user), class: "follower_count_#{@user.id}" %> フォロワー</th>
 		</tr>
 		<tr>
 			<th><%= link_to "お気に入り", user_favorites_path(@user) %></th>
@@ -34,6 +34,8 @@
 	<% end %>
 <% end %>
 
-<%= render 'follow_form', user: @user %>
+<div class="follow_form_<%= @user.id %>">
+	<%= render 'follow_form', user: @user %>
+</div>
 
 <%= link_to "投稿一覧",user_posts_user_path(@user) %>

@@ -12,16 +12,19 @@
 	<span>作品評価：<%= @book.rating %></span>
 </div>
 
+
 <script>
-$('#rate_<%= @book.id %>').raty({
-  size     : 36,
-  starHalf: '/assets/star-half.png',
-  starOff: '/assets/star-off.png',
-  starOn : '/assets/star-on.png',
-  readOnly: true,
-  half: true,
-  score: <%= @book.rating %>
-});
+document.addEventListener("turbolinks:load", function(){
+	$('#rate_<%= @book.id %>').raty({
+	  size     : 36,
+	  starHalf: '/assets/star-half.png',
+	  starOff: '/assets/star-off.png',
+	  starOn : '/assets/star-on.png',
+	  readOnly: true,
+	  half: true,
+	  score: <%= @book.rating %>
+	});
+})
 </script>
 
 <div class="panel panel-default">
@@ -34,43 +37,19 @@ $('#rate_<%= @book.id %>').raty({
 </div>
 
 <h4>コメント一覧</h4>
-<div class="panel panel-default">
-	<% @book.comments.each do |book_comment| %>
-	<div class="panel">
-		<%= link_to user_path(book_comment.user_id) do %>
-			<%= attachment_image_tag book_comment.user, :profile_image, :fill, 40, 40, format: 'jpeg',fallback:"no_image.jpg",size:'40x40' %>
-			<%= book_comment.user.name %>
-		<% end %>
-
-		<%= book_comment.comment %>
-		<% if book_comment.user == current_user %>
-			<%= link_to "削除",book_comment_path(book_id: @book.id, id: book_comment.id),method: :delete, class: "btn btn-danger" %>
-		<% end %>
-	</div>
-	<% end %>
+<div id="book_comments">
+	<%= render 'comments/book_comments', book: @book %>
 </div>
 
 <!-- お気に入り機能 -->
-<% if user_signed_in? %>
-	<% if @book.favorited_by?(current_user) %>
-		<%= link_to book_favorites_path(@book), method: :delete do %>
-		<i class="glyphicon glyphicon-star" aria-hidden="true"></i>
-		<%= @book.favorites.count %> 件のお気に入り
-		<% end %>
-	<% else %>
-		<%= link_to book_favorites_path(@book), method: :post do %>
-		<i class="glyphicon glyphicon-star-empty" aria-hidden="true"></i>
-		<%= @book.favorites.count %> 件のお気に入り
-		<% end %>
-	<% end %>
-<% else %>
-	<p><i class="glyphicon glyphicon-star" aria-hidden="true"></i><%= @book.favorites.count %>件のお気に入り</p>
-<% end %>
+<div id="Favorite_<%= @book.id %>">
+	<%= render 'favorites/book_favorite', book: @book %>
+</div>
 
 <!-- コメント送信フォーム -->
 <div>
 	<% if user_signed_in? %>
-		<%= form_for [@book, @comment] do |f| %>
+		<%= form_for([@book, @comment], data: { remote: true }) do |f| %>
 			<%= f.text_area :comment, class: "form-control form-group",placeholder: "コメントをここに" %>
 			<%= f.submit "送信する", class: "btn btn-lg pull-right" %>
 		<% end %>

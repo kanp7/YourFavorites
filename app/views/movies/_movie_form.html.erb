@@ -25,14 +25,16 @@
 </div>
 
 <script>
-$('#star').raty({
-  size     : 36,
-  starHalf: '/assets/star-half.png',
-  starOff: '/assets/star-off.png',
-  starOn : '/assets/star-on.png',
-  scoreName: 'movie[rating]',
-  half: true,
-});
+document.addEventListener("turbolinks:load", function(){
+	$('#star').raty({
+	  size     : 36,
+	  starHalf: '/assets/star-half.png',
+	  starOff: '/assets/star-off.png',
+	  starOn : '/assets/star-on.png',
+	  scoreName: 'movie[rating]',
+	  half: true,
+	});
+})
 </script>
 
 <div>
