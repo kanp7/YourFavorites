@@ -7,11 +7,13 @@ class CommentsController < ApplicationController
 			@book = Book.find(params[:book_id])
 			comment.post_id = @book.id
 			comment.save
+			comment.post.create_notification_comment!(current_user, comment.id)
 			render "comments/book_comments"
 		else
 			@movie = Movie.find(params[:movie_id])
 			comment.post_id = @movie.id
 			comment.save
+			comment.post.create_notification_comment!(current_user, comment.id)
 			render "comments/movie_comments"
 		end
 	end
