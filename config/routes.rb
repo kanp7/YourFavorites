@@ -15,11 +15,15 @@ Rails.application.routes.draw do
   	member do
   		get :following, :followers, :user_posts
   	end
-  	resource :favorites, only:[:show]
+  	resource :favorites, only: [:show]
   end
-  resources :relationships, only:[:create, :destroy]
+  resources :relationships, only: [:create, :destroy]
+  resources :notifications, only: [:index] do
+    collection do
+      delete :destroy_all
+    end
+  end
 
   get 'search' => 'searches#search'
-
 
 end

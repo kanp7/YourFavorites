@@ -4,7 +4,16 @@ class MoviesController < ApplicationController
 	before_action :correct_user, only: [:edit, :update]
 
   def index
-  	@movies = Movie.page(params[:page]).reverse_order
+    @sort = params[:sort]
+    if @sort == 'new'
+      @movies = Movie.page(params[:page]).order(created_at: :DESC)
+    elsif @sort == 'old'
+      @movies = Movie.page(params[:page]).order(created_at: :ASC)
+    elsif @sort == 'favorite'
+      @movies = Movie.left_joins(:favorites).group(:id).order(Arel.sql('COUNT(favorites.id)')).reverse_order.page(params[:page])
+    else
+      @movies = Movie.page(params[:page]).reverse_order
+    end
   end
 
   def show

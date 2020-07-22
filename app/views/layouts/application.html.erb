@@ -19,9 +19,16 @@
           <ul class="nav navbar-nav navbar-right">
           <% if user_signed_in? %>
             <li><%= link_to user_path(current_user) do %><i class="glyphicon glyphicon-user"></i>&emsp;マイページ<% end %></li>
+            <li>
+              <%= link_to notifications_path do %><i class="glyphicon glyphicon-bell"></i>&emsp;通知<% end %>
+              <% if unchecked_notifications.any? %>
+                <i class="fa fa-circle" style="color: gold;"></i>
+              <% end %>
+            </li>
             <li><%= link_to books_path do %><i class="glyphicon glyphicon-book"></i>&emsp;本<% end %></li>
             <li><%= link_to movies_path do %><i class="glyphicon glyphicon-film"></i>&emsp;映像作品<% end %></li>
             <li><%= link_to destroy_user_session_path, method: :delete do %><i class="glyphicon glyphicon-log-out"></i>&emsp;ログアウト<% end %></li>
+
             <%#= link_to "support" %>
           <% else %>
             <li><%= link_to root_path do %><i class="glyphicon glyphicon-home home"></i>&emsp;Home<% end %></li>
