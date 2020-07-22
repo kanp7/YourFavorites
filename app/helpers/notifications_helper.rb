@@ -1,13 +1,16 @@
 module NotificationsHelper
 
   def notification_form(notification)
+
+    your_post = link_to 'あなたの投稿', notification.post, style:"font-weight: bold;"
+
     case notification.action
       when "follow" then
-        "あなたをフォローしました"
+        "あなたをフォローしました".html_safe
       when "favorite" then
-        "あなたの投稿にいいね！しました"
+        "#{your_post}にいいね！しました".html_safe
       when "comment" then
-        "あなたの投稿にコメントしました"
+        "#{your_post}にコメントしました".html_safe
     end
   end
 
