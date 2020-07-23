@@ -25,6 +25,12 @@
                 <i class="fa fa-circle" style="color: gold;"></i>
               <% end %>
             </li>
+            <li>
+              <!-- 検索モーダル・ダイアログ呼び出し部 -->
+              <a href="#" data-toggle="modal" data-target="#SearchModal">
+                <i class="glyphicon glyphicon-search">&emsp;検索</i>
+              </a>
+            </li>
             <li><%= link_to books_path do %><i class="glyphicon glyphicon-book"></i>&emsp;本<% end %></li>
             <li><%= link_to movies_path do %><i class="glyphicon glyphicon-film"></i>&emsp;映像作品<% end %></li>
             <li><%= link_to destroy_user_session_path, method: :delete do %><i class="glyphicon glyphicon-log-out"></i>&emsp;ログアウト<% end %></li>
@@ -43,6 +49,10 @@
       </div>
     </header>
 
+<!-- 検索モーダル・ダイアログ部 -->
+<%= render "layouts/search_form" %>
+
+
 <% if flash[:notice] %>
   <div class="alert alert-success text-center" role="alert">
     <%= flash[:notice] %>
@@ -53,14 +63,6 @@
   </div>
 <% end %>
 
-<!-- 検索フォーム -->
-    <div class="search_form form-inline" >
-      <%= form_tag(search_path, method: :get) do %>
-        <%= select_tag 'select_model' ,options_for_select([['ユーザー', '1'],['投稿','2']]),class: "form-control", style: "width: 100px;" %>
-        <%= text_field_tag (:word), "", class: "form-control",style: "width: 50%" %>
-        <%= submit_tag "検索", class: "btn btn-default" %>
-      <% end %>
-    </div>
 
     <div class="container">
       <div class="row">
