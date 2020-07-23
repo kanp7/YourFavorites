@@ -33,6 +33,8 @@ class MoviesController < ApplicationController
   		flash[:notice] = "映像作品の感想を投稿しました"
   		redirect_to movie_path(movie.id)
   	else
+      @movie = movie
+      @movie_categories = MovieCategory.all
   		render "new"
   	end
   end

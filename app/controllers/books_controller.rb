@@ -33,6 +33,8 @@ class BooksController < ApplicationController
   		flash[:notice] = "本の感想を投稿しました"
   		redirect_to book_path(book.id)
   	else
+      @book = book
+      @book_categories = BookCategory.all
   		render "new"
   	end
   end
