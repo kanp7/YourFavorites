@@ -54,7 +54,7 @@ class Post < ApplicationRecord
 			)
 		# 自分の投稿に対するコメントの場合は通知済みとする
 		if notification.visiter_id == notification.visited_id
-			notification.checked == true
+			notification.checked = true
 		end
 		notification.save if notification.valid?
 	end

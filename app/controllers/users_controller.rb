@@ -42,6 +42,17 @@ class UsersController < ApplicationController
   def user_posts
     @user = User.find(params[:id])
     @posts = Post.where(user_id: params[:id]).page(params[:page]).reverse_order
+
+    @sort = params[:sort]
+    if @sort == 'new'
+      @posts = Post.page(params[:page]).order(created_at: :DESC)
+    elsif @sort == 'old'
+      @posts = Post.page(params[:page]).order(created_at: :ASC)
+    elsif @sort == 'favorite'
+      @posts = Post.left_joins(:favorites).group(:id).order(Arel.sql('COUNT(favorites.id)')).reverse_order.page(params[:page])
+    else
+     @posts = Post.page(params[:page]).reverse_order
+    end
   end
 
   private
