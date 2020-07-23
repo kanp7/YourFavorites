@@ -10,6 +10,65 @@
   </head>
 
   <body>
-    <%= yield %>
+    <header class="navbar navbar-fixed-top navbar-inverse">
+      <div class="conteiner">
+        <nav class="nav navbar-nav navbar-left">
+          <span>YourFavorites</span>
+        </nav>
+        <nav>
+          <ul class="nav navbar-nav navbar-right">
+          <% if user_signed_in? %>
+            <li><%= link_to user_path(current_user) do %><i class="glyphicon glyphicon-user"></i>&emsp;マイページ<% end %></li>
+            <li>
+              <%= link_to notifications_path do %><i class="glyphicon glyphicon-bell"></i>&emsp;通知<% end %>
+              <% if unchecked_notifications.any? %>
+                <i class="fa fa-circle" style="color: gold;"></i>
+              <% end %>
+            </li>
+            <li>
+              <!-- 検索モーダル・ダイアログ呼び出し部 -->
+              <a href="#" data-toggle="modal" data-target="#SearchModal">
+                <i class="glyphicon glyphicon-search">&emsp;検索</i>
+              </a>
+            </li>
+            <li><%= link_to books_path do %><i class="glyphicon glyphicon-book"></i>&emsp;本<% end %></li>
+            <li><%= link_to movies_path do %><i class="glyphicon glyphicon-film"></i>&emsp;映像作品<% end %></li>
+            <li><%= link_to destroy_user_session_path, method: :delete do %><i class="glyphicon glyphicon-log-out"></i>&emsp;ログアウト<% end %></li>
+
+            <%#= link_to "support" %>
+          <% else %>
+            <li><%= link_to root_path do %><i class="glyphicon glyphicon-home home"></i>&emsp;Home<% end %></li>
+            <li><%= link_to new_user_registration_path do %><i class="glyphicon glyphicon-edit"></i>&emsp;新規登録</li><% end %>
+            <li><%= link_to new_user_session_path do %><i class="glyphicon glyphicon-log-in"></i>&emsp;ログイン<% end %></li>
+            <li><%= link_to books_path do %><i class="glyphicon glyphicon-book"></i>&emsp;本<% end %></li>
+           <li><%= link_to movies_path do %><i class="glyphicon glyphicon-film"></i>&emsp;映像作品<% end %></li>
+            <%#= link_to "support" %>
+          <% end %>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+<!-- 検索モーダル・ダイアログ部 -->
+<%= render "layouts/search_form" %>
+
+
+<% if flash[:notice] %>
+  <div class="alert alert-success text-center" role="alert">
+    <%= flash[:notice] %>
+  </div>
+<% elsif flash[:alert]%>
+  <div class="alert alert-danger text-center" role="alert">
+    <%= flash[:alert] %>
+  </div>
+<% end %>
+
+
+    <div class="container">
+      <div class="row">
+        <%= yield %>
+      </div>
+    </div>
+
   </body>
 </html>

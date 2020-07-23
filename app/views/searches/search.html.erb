@@ -1,0 +1,75 @@
+<h2><%= @select_model == '1' ? "ユーザー" : "投稿" %>検索 検索ワード: "<%= @word %>"</h2>
+
+
+<!--postの検索結果 -->
+<% if @select_model == '2' %>
+  <table class="table">
+    <thead>
+      <tr>
+          <th>投稿者</th>
+          <th>タイトル</th>
+          <th>件名</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if @posts.present? %>
+        <% @posts.each do |post| %>
+          <tr>
+            <td>
+              <%= link_to(post.user) do %>
+              <%= attachment_image_tag(post.user, :profile_image, :fill, 50, 50, fallback: "no_image.jpg", size:'50x50') %>
+              <%= post.user.name %>
+              <% end %>
+            </td>
+            <td><%= link_to post.title, post %></td>
+            <td><%= post.subject %></td>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+
+  <% if @posts.present? %>
+    <%= paginate @posts %>
+  <% end %>
+
+<!-- userの検索結果 -->
+<% else %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>名前</th>
+        <th>自己紹介</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if @users.present? %>
+        <% @users.each do |user| %>
+           <tr>
+             <td><%= link_to user do %>
+                <%= attachment_image_tag(user, :profile_image, :fill, 50, 50, fallback: "no_image.jpg", size:'50x50') %>
+                 <%= user.name %>
+                 <% end %>
+             </td>
+             <td><%= user.introduction%></td>
+             <td>
+              <% unless user == current_user %>
+                <div class="follow_form_<%= user.id %>">
+                  <%= render 'users/follow_form', user: user %>
+                </div>
+              <% end %>
+             </td>
+           </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+
+  <% if @users.present? %>
+    <%= paginate @users %>
+  <% end %>
+
+<% end %>
+
+
+

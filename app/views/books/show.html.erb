@@ -1,0 +1,62 @@
+<h3>投稿詳細</h3>
+
+<h4>
+	<span class="label label-primary">作品名: <%= @book.title %></span>
+	<span class="label label-primary">作者: <%= @book.author %></span>
+	<% unless @book.category.nil?%>
+		<span class="label label-primary">カテゴリー: <%= @book.category.category %></span>
+	<% end %>
+</h4>
+
+<div id="rate_<%= @book.id %>" class="rate">
+	<span>作品評価：<%= @book.rating %></span>
+</div>
+
+
+<script>
+document.addEventListener("turbolinks:load", function(){
+	$('#rate_<%= @book.id %>').raty({
+	  size     : 36,
+	  starHalf: '/assets/star-half.png',
+	  starOff: '/assets/star-off.png',
+	  starOn : '/assets/star-on.png',
+	  readOnly: true,
+	  half: true,
+	  score: <%= @book.rating %>
+	});
+})
+</script>
+
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<%= @book.subject %>
+	</div>
+	<div class="panel-body">
+		<%= simple_format(@book.body) %>
+	</div>
+</div>
+
+<h4>コメント一覧</h4>
+<div id="book_comments">
+	<%= render 'comments/book_comments', book: @book %>
+</div>
+
+<!-- お気に入り機能 -->
+<div id="Favorite_<%= @book.id %>">
+	<%= render 'favorites/book_favorite', book: @book %>
+</div>
+
+<!-- コメント送信フォーム -->
+<div>
+	<% if user_signed_in? %>
+		<%= form_for([@book, @comment], data: { remote: true }) do |f| %>
+			<%= f.text_area :comment, class: "form-control form-group",placeholder: "コメントをここに" %>
+			<%= f.submit "送信する", class: "btn btn-lg pull-right" %>
+		<% end %>
+	<% end %>
+</div>
+
+<% if @book.user == current_user %>
+	<%= link_to "編集", edit_book_path(@book), class: "btn btn-primary" %>
+	<%= link_to "削除", book_path(@book), method: :delete, data: {confirm: "本当に削除しますか？"}, class: "btn btn-danger" %>
+<% end %>

@@ -1,0 +1,5 @@
+<% if @check == "book" %>
+	$('#Favorite_<%= @book.id %>').html("<%= j(render partial: 'favorites/book_favorite', locals: {book: @book}) %>");
+<% elsif @check == "movie" %>
+	$('#Favorite_<%= @movie.id %>').html("<%= j(render partial: 'favorites/movie_favorite', locals: {movie: @movie}) %>");
+<% end %>

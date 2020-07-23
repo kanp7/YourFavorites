@@ -1,0 +1,49 @@
+<%= form_for book do |f| %>
+<%= render 'shared/error_messages', model: f.object %>
+<div class="form-group">
+	<%= f.label :title, '作品名' %>
+	<%= f.text_field :title, class: 'form-control' %>
+</div>
+<div class="form-group">
+	<%= f.label :author, '作者' %>
+	<%= f.text_field :author, class: 'form-control' %>
+</div>
+
+<div class="form-group">
+	<%= f.label :subject, '件名' %>
+	<%= f.text_field :subject, class: 'form-control' %>
+</div>
+
+<div class="form-group">
+	<%= f.label :body, '本文' %>
+	<%= f.text_area :body, class: 'form-control', rows: 15 %>
+</div>
+
+<div class="form-group">
+	<%= f.label :category, 'カテゴリー' %>
+	<%= f.collection_select(:category_id, @book_categories, :id, :category, {prompt: "選択してください"}, class: 'form-control') %>
+</div>
+
+<div id="star" class="form-group">
+	<%= f.label :rating,'評価' %>
+	<%= f.hidden_field :rating %>
+</div>
+
+<script>
+document.addEventListener("turbolinks:load", function(){
+	$('#star').raty({
+	  size     : 36,
+	  starHalf: '/assets/star-half.png',
+	  starOff: '/assets/star-off.png',
+	  starOn : '/assets/star-on.png',
+	  scoreName: 'book[rating]',
+	  half: true,
+	});
+})
+</script>
+
+<div>
+	<%= f.submit "投稿", class: 'btn btn-primary' %>
+</div>
+<% end %>
+

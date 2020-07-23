@@ -1,0 +1,18 @@
+ja:
+  activerecord:
+    attributes:
+      user:
+        name: ユーザー名
+      post:
+        category: カテゴリー
+        title: 作品名
+        author: 作者
+        subject: 件名
+        body: 本文
+  views:
+    pagination:
+      first: '最初'
+      last: '最後'
+      previous: '前'
+      next: '次'
+      truncate: '...'

@@ -1,0 +1,26 @@
+<h1><%= @title %></h1>
+	<table class="table">
+
+		<tbody>
+			<% @users.each do |user| %>
+			<tr>
+				<td><%= attachment_image_tag user, :profile_image, :fill, 40, 40, format: 'jpeg', fallback: "no_image.jpg" ,size:'40x40' %></td>
+				<td><%= link_to "#{user.name}", user_path(user.id) %></td>
+				<td>
+					<%= link_to "#{user.following.count}", following_user_path(user), class: "follow_count_#{user.id}" %>フォロー
+				</td>
+				<td>
+					<%= link_to "#{user.followers.count}", followers_user_path(user), class: "follower_count_#{user.id}" %>フォロワー
+				</td>
+				<td>
+					<% unless user == current_user %>
+						<div class="follow_form_<%= user.id %>">
+							<%= render 'users/follow_form', user: user %>
+						</div>
+					<% end %>
+				</td>
+			</tr>
+			<% end %>
+		</tbody>
+	</table>
+	<%= paginate @users %>

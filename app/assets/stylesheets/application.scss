@@ -13,3 +13,50 @@
  *= require_tree .
  *= require_self
  */
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "font-awesome";
+
+header{
+	color:white;
+	.navbar-left{
+		span{
+			font-size: 20px;
+			padding-top: 10px;
+		}
+	}
+}
+
+body {
+	padding-top: 75px;
+}
+
+.search_form {
+	margin: 20px;
+	text-align: center
+}
+
+.mypage_btn {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+/*kaminari/_paginator.html.erb*/
+.text-center {
+	text-align: center;
+}
+
+.rate {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.glyphicon-bell {
+	position: relative;
+}
+
+.fa-circle {
+	position: absolute;
+	top: 20%;
+	right: 70%;
+}
