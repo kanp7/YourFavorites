@@ -17,9 +17,9 @@
 document.addEventListener("turbolinks:load", function(){
 	$('#rate_<%= @book.id %>').raty({
 	  size     : 36,
-	  starHalf: '/assets/star-half.png',
-	  starOff: '/assets/star-off.png',
-	  starOn : '/assets/star-on.png',
+	  starHalf: "<%= image_path('star-half.png') %>",
+	  starOff: "<%= image_path('star-off.png') %>",
+	  starOn : "<%= image_path('star-on.png') %>",
 	  readOnly: true,
 	  half: true,
 	  score: <%= @book.rating %>
