@@ -3,10 +3,10 @@
 <!-- 自分への通知をchecked:trueに変更するためビューに記述 -->
 <% notifications = @notifications.where.not(visiter_id: current_user.id) %>
 
-<div>
+<div class="trash_box">
 	<%= link_to destroy_all_notifications_path, method: :delete do %>
-	<i class="glyphicon glyphicon-trash" style="color: black;"></i>
-	<h7 style="color: black;">全削除</h7>
+		<i class="glyphicon glyphicon-trash" style="color: black;"></i>
+		<h7 style="color: black;">全削除</h7>
 	<% end %>
 </div>
 
