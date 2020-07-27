@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>YourFavorites</title>
+    <title>Your Favorites</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -11,10 +11,11 @@
   </head>
 
   <body>
+  <div class="wrapper">
     <header class="navbar navbar-fixed-top navbar-inverse">
       <div class="conteiner">
         <nav class="nav navbar-nav navbar-left">
-          <span id="logo">YourFavorites</span>
+          <span id="logo">Your Favorites</span>
         </nav>
         <nav>
           <ul class="nav navbar-nav navbar-right">
@@ -64,12 +65,21 @@
   </div>
 <% end %>
 
-
-    <div class="container">
+  <div class="main">
+      <div class="container">
       <div class="row">
         <%= yield %>
       </div>
     </div>
+  </div>
 
+
+    <footer>
+      <div>
+        <p＞> &copy; YourFavorites</p>
+      </div>
+    </footer>
+
+  </div>
   </body>
 </html>
