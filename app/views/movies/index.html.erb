@@ -17,6 +17,7 @@
 			<th>作品名</th>
 			<th>件名</th>
 			<th>投稿日時</th>
+			<th>お気に入り数</th>
 		</tr>
 	</thead>
 	<% @movies.each do |movie| %>
@@ -30,6 +31,7 @@
 			<td><%= movie.title %></td>
 			<td><%= movie.subject %></td>
 			<td><%= movie.created_at.to_s(:datetime_jp) %></td>
+			<td><%= movie.favorites.count%></td>
 			<td><%= link_to "詳細", movie_path(movie), data: {"turbolinks" => false} %></td>
 		</tr>
 	</tbody>

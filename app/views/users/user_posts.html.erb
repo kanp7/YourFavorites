@@ -20,6 +20,8 @@
 			<th>作品名</th>
 			<th>件名</th>
 			<th>投稿日時</th>
+			<th>お気に入り数</th>
+
 		</tr>
 	</thead>
 	<% @posts.each do |post| %>
@@ -34,6 +36,7 @@
 			<td><%= post.title %></td>
 			<td><%= post.subject %></td>
 			<td><%= post.created_at.to_s(:datetime_jp) %></td>
+			<td><%= post.favorites.count %></td>
 			<td>
 				<% if post.type == "Book"%>
 					<%= link_to "詳細", book_path(post) %>
@@ -41,6 +44,7 @@
 					<%= link_to "詳細", movie_path(post) %>
 				<% end %>
 			</td>
+
 		</tr>
 	</tbody>
 	<% end %>
