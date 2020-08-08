@@ -11,6 +11,8 @@ class UsersController < ApplicationController
   	@books = @user.posts
     if @user != nil && @user.profile_image_id != nil
       @image_url = "https://yourfavorites-resize.s3-ap-northeast-1.amazonaws.com/store/" + @user.profile_image_id + "-thumbnail."
+    else
+      @image_url = ""
     end
   end
 
