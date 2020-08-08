@@ -9,11 +9,11 @@ class UsersController < ApplicationController
   def show
   	@user = User.find(params[:id])
   	@books = @user.posts
-    if @user != nil && @user.profile_image_id != nil
-      @image_url = "https://yourfavorites-resize.s3-ap-northeast-1.amazonaws.com/store/" + @user.profile_image_id + "-thumbnail."
-    else
-      @image_url = "/assets/no_image-c7305210e2d30bf8f19461ca05a151bba6413a44a35124f673246160efefdc5e.jpg"
-    end
+    # if @user != nil && @user.profile_image_id != nil
+    #   @image_url = "https://yourfavorites-resize.s3-ap-northeast-1.amazonaws.com/store/" + @user.profile_image_id + "-thumbnail."
+    # else
+    #   @image_url = "/assets/no_image-c7305210e2d30bf8f19461ca05a151bba6413a44a35124f673246160efefdc5e.jpg"
+    # end
   end
 
   def edit
