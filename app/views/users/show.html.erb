@@ -6,6 +6,8 @@
 		<%= attachment_image_tag @user, :profile_image, :fill, 150, 150, format: 'jpeg',fallback: "no_image.jpg",size: '150x150', class: "img-circle" %>
 	</div>
 
+	<%= image_tag @img_url %>
+
 	<% if user_signed_in? %>
 		<% if @user.id == current_user.id %>
 			<div class="mypage_btn">
