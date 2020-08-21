@@ -12,7 +12,7 @@ class BooksController < ApplicationController
     elsif @sort == 'favorite'
       @books = Book.left_joins(:favorites).group(:id).order(Arel.sql('COUNT(favorites.id)')).reverse_order.page(params[:page])
     else
-  	 @books = Book.page(params[:page]).reverse_order
+  	  @books = Book.page(params[:page]).reverse_order
     end
   end
 

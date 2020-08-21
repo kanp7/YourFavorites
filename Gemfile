@@ -43,6 +43,9 @@ group :development, :test do
   gem 'capistrano-rails'
   gem 'capistrano3-puma'
   gem 'capistrano-rbenv'
+  gem 'rspec-rails'
+  gem 'factory_bot_rails'
+  gem 'rails-controller-testing'
 end
 
 group :development do
@@ -79,6 +82,7 @@ gem 'pry-rails'
 gem 'rails-i18n'
 gem 'dotenv-rails'
 gem 'font-awesome-rails'
+gem 'faker'
 
 gem 'listen', '>= 3.0.5', '< 3.2'
 
