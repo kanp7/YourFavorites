@@ -43,6 +43,9 @@ group :development, :test do
   gem 'capistrano-rails'
   gem 'capistrano3-puma'
   gem 'capistrano-rbenv'
+  gem 'rspec-rails'
+  gem 'factory_bot_rails'
+  gem 'rails-controller-testing'
 end
 
 group :development do
@@ -58,7 +61,7 @@ group :test do
   gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
   # Easy installation and use of chromedriver to run system tests with Chrome
-  gem 'chromedriver-helper'
+  gem 'webdrivers'
 end
 
 group :production do
@@ -79,6 +82,7 @@ gem 'pry-rails'
 gem 'rails-i18n'
 gem 'dotenv-rails'
 gem 'font-awesome-rails'
+gem 'faker'
 
 gem 'listen', '>= 3.0.5', '< 3.2'
 
