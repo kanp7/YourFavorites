@@ -45,11 +45,12 @@ class MoviesController < ApplicationController
   end
 
   def update
-  	movie = Movie.find(params[:id])
-  	if movie.update(movie_params)
+  	@movie = Movie.find(params[:id])
+  	if @movie.update(movie_params)
   		flash[:notice] = "映像作品の感想を更新しました"
-  		redirect_to movie_path(movie.id)
+  		redirect_to movie_path(@movie.id)
   	else
+      @movie_categories = MovieCategory.all
   		render "edit"
   	end
   end
