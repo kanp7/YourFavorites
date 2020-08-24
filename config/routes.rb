@@ -5,11 +5,15 @@ Rails.application.routes.draw do
 
   resources :books do
     resources :comments, only: [:create, :destroy]
-    resource :favorites, only: [:create, :destroy]
+    resource :favorites, only: [:create, :destroy] do
+      delete :index_destroy
+    end
   end
   resources :movies do
     resources :comments, only: [:create, :destroy]
-    resource :favorites, only: [:create, :destroy]
+    resource :favorites, only: [:create, :destroy] do
+      delete :index_destroy
+    end
   end
   resources :users do
   	member do

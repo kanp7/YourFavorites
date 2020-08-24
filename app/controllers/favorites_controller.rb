@@ -36,4 +36,18 @@ class FavoritesController < ApplicationController
 		end
 	end
 
+	def index_destroy
+		if params[:book_id]
+			@book = Book.find(params[:book_id])
+			favorite = current_user.favorites.find_by(post_id: @book.id)
+			favorite.destroy
+			redirect_back(fallback_location: root_path)
+		else
+			@movie = Movie.find(params[:movie_id])
+			favorite = current_user.favorites.find_by(post_id: @movie.id)
+			favorite.destroy
+			redirect_back(fallback_location: root_path)
+		end
+	end
+
 end
