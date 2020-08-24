@@ -38,6 +38,7 @@ document.addEventListener("turbolinks:load", function(){
 	  starOn : "<%= image_path('star-on.png') %>",
 	  scoreName: 'book[rating]',
 	  half: true,
+	  score: <%= book.rating %>
 	});
 })
 </script>
