@@ -30,6 +30,7 @@
 </div>
 
 <script>
+
 document.addEventListener("turbolinks:load", function(){
 	$('#star').raty({
 	  size     : 36,
@@ -38,7 +39,7 @@ document.addEventListener("turbolinks:load", function(){
 	  starOn : "<%= image_path('star-on.png') %>",
 	  scoreName: 'book[rating]',
 	  half: true,
-	  score: <%= book.rating %>
+	  score: <%= book.rating || 0 %>
 	});
 })
 </script>

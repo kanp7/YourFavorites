@@ -19,8 +19,8 @@
 				<td><%= link_to "#{favorite.post.title}", book_path(favorite.post.id) %></td>
 				<td><%= link_to "#{favorite.post.subject}", book_path(favorite.post.id) %></td>
 				<td><%= link_to "#{favorite.post.user.name}", user_path(favorite.post.user.id) %></td>
-				<td><%= link_to index_destroy_book_favorites_path(favorite.post.id), method: :delete do %>
-					<i class="glyphicon glyphicon-star" aria-hidden="true"></i>
+				<td><%= link_to book_favorites_path(favorite.post.id, request_from: 'mypage'), method: :delete do %>
+					<i class="glyphicon glyphicon-star" aria-hidden="true"></i></div>
 					<% end %>
 				</td>
 				<% else %>
@@ -28,7 +28,7 @@
 				<td><%= link_to "#{favorite.post.title}", movie_path(favorite.post.id) %></td>
 				<td><%= link_to "#{favorite.post.subject}", movie_path(favorite.post.id) %></td>
 				<td><%= link_to "#{favorite.post.user.name}", user_path(favorite.post.user.id) %></td>
-				<td><%= link_to index_destroy_movie_favorites_path(favorite.post.id), method: :delete do %>
+				<td><%= link_to movie_favorites_path(favorite.post.id, request_from: 'mypage'), method: :delete do %>
 					<i class="glyphicon glyphicon-star" aria-hidden="true"></i>
 					<% end %>
 				</td>

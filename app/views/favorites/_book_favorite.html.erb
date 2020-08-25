@@ -1,6 +1,6 @@
 <% if user_signed_in? %>
 	<% if book.favorited_by?(current_user) %>
-		<%= link_to book_favorites_path(book), method: :delete, remote: true do %>
+		<%= link_to book_favorites_path(book, request_from: 'show'), method: :delete, remote: true do %>
 		<i class="glyphicon glyphicon-star" aria-hidden="true"></i>
 		<%= book.favorites.count %> 件のお気に入り
 		<% end %>

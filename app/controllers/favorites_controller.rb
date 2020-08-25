@@ -34,18 +34,12 @@ class FavoritesController < ApplicationController
 			favorite.destroy
 			@check = "movie"
 		end
-	end
-
-	def index_destroy
-		if params[:book_id]
-			@book = Book.find(params[:book_id])
-			favorite = current_user.favorites.find_by(post_id: @book.id)
-			favorite.destroy
-			redirect_back(fallback_location: root_path)
-		else
-			@movie = Movie.find(params[:movie_id])
-			favorite = current_user.favorites.find_by(post_id: @movie.id)
-			favorite.destroy
+		#favorites/_book(movie)_favorite(投稿の詳細ページ)からは"show"
+		#favorites/show(マイページのお気入り一覧)からは"mypage"のパラメーターを受け取り、結果を分岐。
+		case params[:request_from]
+		when 'show'
+			render :destroy
+		when 'mypage'
 			redirect_back(fallback_location: root_path)
 		end
 	end
