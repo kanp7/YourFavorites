@@ -100,6 +100,22 @@ RSpec.describe 'ユーザーのテスト', type: :system do
 	  		expect(page).to have_link '本の感想を投稿'
 	  		expect(page).to have_link '映像作品の感想を投稿'
 	  	end
+	  	it 'フォロー一覧へ遷移できる' do
+	  		visit following_user_path(user)
+	  		expect(current_path).to eq('/users/' + user.id.to_s + '/following')
+	  	end
+	  	it 'フォロワー一覧へ遷移できる' do
+	  		visit followers_user_path(user)
+	  		expect(current_path).to eq('/users/' + user.id.to_s + '/followers')
+	  	end
+	  	it 'お気に入り一覧へ遷移できる' do
+	  		visit user_favorites_path(user)
+	  		expect(current_path).to eq('/users/' + user.id.to_s + '/favorites')
+	  	end
+	  	it 'ユーザーの投稿一覧へ遷移できる' do
+	  		visit user_posts_user_path(user)
+	  		expect(current_path).to eq('/users/' + user.id.to_s + '/user_posts')
+	  	end
   	end
   	context '編集ページ' do
   		it '遷移できる' do
