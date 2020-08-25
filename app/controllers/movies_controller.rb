@@ -11,6 +11,10 @@ class MoviesController < ApplicationController
       @movies = Movie.page(params[:page]).order(created_at: :ASC)
     elsif @sort == 'favorite'
       @movies = Movie.left_joins(:favorites).group(:id).order(Arel.sql('COUNT(favorites.id)')).reverse_order.page(params[:page])
+    elsif @sort == 'high_rating'
+      @movies = Movie.page(params[:page]).order(rating: :DESC)
+    elsif @sort == 'low_rating'
+      @movies = Movie.page(params[:page]).order(rating: :ASC)
     else
       @movies = Movie.page(params[:page]).reverse_order
     end

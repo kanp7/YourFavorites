@@ -55,6 +55,10 @@ class UsersController < ApplicationController
       @posts = @posts.page(params[:page]).order(created_at: :ASC)
     elsif @sort == 'favorite'
       @posts = @posts.left_joins(:favorites).group(:id).order(Arel.sql('COUNT(favorites.id)')).reverse_order.page(params[:page])
+    elsif @sort == 'high_rating'
+      @posts = @posts.page(params[:page]).order(rating: :DESC)
+    elsif @sort == 'low_rating'
+      @posts = @posts.page(params[:page]).order(rating: :ASC)
     else
      @posts = @posts.page(params[:page]).reverse_order
     end

@@ -3,7 +3,9 @@
    <%= f.select :sort, [ ['並び替え', ''],
    						 ['投稿が新しい順', 'new'],
    						 ['投稿が古い順','old'],
-   						 ['お気に入りが多い順', 'favorite']
+   						 ['お気に入りが多い順', 'favorite'],
+   						 ['評価が高い順', 'high_rating'],
+   						 ['評価が低い順', 'low_rating'],
    					   ],
    					   {},class: "form-control", style: "width: 200px;",
    					   onchange: "$(this).closest('form').submit() " %>
