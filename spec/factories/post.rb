@@ -4,15 +4,15 @@ FactoryBot.define do
     author { Faker::Lorem.characters(number:5) }
     subject { Faker::Lorem.characters(number:5) }
     body { Faker::Lorem.characters(number:20) }
-    user
-    category
+    user { create(:user) }
+    category {Category.create(category: '小説')}
   end
 
   factory :movie, class: Post do
     title { Faker::Lorem.characters(number:5) }
     subject { Faker::Lorem.characters(number:5) }
     body { Faker::Lorem.characters(number:20) }
-    user
-    category
+    user { create(:user) }
+    category {Category.create(category: '映画')}
   end
 end

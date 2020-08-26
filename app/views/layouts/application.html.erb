@@ -4,14 +4,14 @@
     <title>Your Favorites</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <link href="https://fonts.googleapis.com/css2?family=Rowdies&display=swap" rel="stylesheet">
   </head>
 
   <body>
-  <div class="wrapper">
+    <div class="wrapper">
     <header class="navbar navbar-fixed-top navbar-inverse">
       <div class="conteiner">
         <nav class="nav navbar-nav navbar-left">
@@ -36,15 +36,12 @@
             <li><%= link_to books_path do %><i class="glyphicon glyphicon-book"></i>&emsp;本<% end %></li>
             <li><%= link_to movies_path do %><i class="glyphicon glyphicon-film"></i>&emsp;映像作品<% end %></li>
             <li><%= link_to destroy_user_session_path, method: :delete do %><i class="glyphicon glyphicon-log-out"></i>&emsp;ログアウト<% end %></li>
-
-            <%#= link_to "support" %>
           <% else %>
             <li><%= link_to root_path do %><i class="glyphicon glyphicon-home home"></i>&emsp;Home<% end %></li>
             <li><%= link_to new_user_registration_path do %><i class="glyphicon glyphicon-edit"></i>&emsp;新規登録</li><% end %>
             <li><%= link_to new_user_session_path do %><i class="glyphicon glyphicon-log-in"></i>&emsp;ログイン<% end %></li>
             <li><%= link_to books_path do %><i class="glyphicon glyphicon-book"></i>&emsp;本<% end %></li>
            <li><%= link_to movies_path do %><i class="glyphicon glyphicon-film"></i>&emsp;映像作品<% end %></li>
-            <%#= link_to "support" %>
           <% end %>
           </ul>
         </nav>
@@ -54,6 +51,15 @@
 <!-- 検索モーダル・ダイアログ部 -->
 <%= render "layouts/search_form" %>
 
+<!-- 画面サイズに合わせてヘッダーの高さを変化させる -->
+<script>
+$(window).on('load resize', function(){
+    // navbarの高さを取得する
+    var height = $('.navbar').height();
+    // bodyのpaddingにnavbarの高さを設定する
+    $('body').css('padding-top',height + 20);
+});
+</script>
 
 <% if flash[:notice] %>
   <div class="alert alert-success text-center" role="alert">
