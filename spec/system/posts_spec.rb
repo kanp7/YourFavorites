@@ -9,11 +9,17 @@ describe '投稿のテスト' do
   let!(:book2) { create(:book, user: user2) }
   let!(:movie) { create(:movie, user: user) }
   let!(:movie2) { create(:movie, user: user2) }
+
   before do
   	visit new_user_session_path
   	fill_in 'user[name]', with: user.name
   	fill_in 'user[password]', with: user.password
   	click_button 'ログイン'
+  end
+
+  it '新規投稿ページへ遷移する' do
+    visit new_book_path
+    expect(page).to have_content '新規投稿'
   end
 
   	it '投稿に成功する' do
@@ -22,9 +28,21 @@ describe '投稿のテスト' do
   		fill_in '作者', with: Faker::Lorem.characters(number:5)
   		fill_in '件名', with: Faker::Lorem.characters(number:5)
   		fill_in '本文', with: Faker::Lorem.characters(number:5)
-  		select '小説', from: 'book_category_id'
+
+  		# select '小説', from: 'book_category_id'
   		click_button '投稿'
-  		expect(page).to have_content '投稿しました'
+  		expect(page).to have_content 'を入力してください'
   	end
+
+    it '投稿に失敗する' do
+    visit new_book_path
+      fill_in '作品名', with: Faker::Lorem.characters(number:5)
+      fill_in '作者', with: Faker::Lorem.characters(number:5)
+      fill_in '件名', with: Faker::Lorem.characters(number:5)
+      fill_in '本文', with: Faker::Lorem.characters(number:5)
+      # select '小説', from: 'book_category_id'
+      click_button '投稿'
+      expect(page).to have_content 'カテゴリーを入力してください'
+    end
 
 end
