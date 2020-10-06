@@ -1,5 +1,5 @@
 # <アプリ名>
-### Your　Favorites
+### Your Favorites
 <img width="1437" alt="YourFavorites" src="https://user-images.githubusercontent.com/61006871/95156198-eca8a780-07d0-11eb-919b-127c0e37b1be.png">
 
 ## サイト概要
