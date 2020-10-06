@@ -11,6 +11,10 @@ class MoviesController < ApplicationController
       @movies = Movie.page(params[:page]).order(created_at: :ASC)
     elsif @sort == 'favorite'
       @movies = Movie.left_joins(:favorites).group(:id).order(Arel.sql('COUNT(favorites.id)')).reverse_order.page(params[:page])
+    elsif @sort == 'high_rating'
+      @movies = Movie.page(params[:page]).order(rating: :DESC)
+    elsif @sort == 'low_rating'
+      @movies = Movie.page(params[:page]).order(rating: :ASC)
     else
       @movies = Movie.page(params[:page]).reverse_order
     end
@@ -45,11 +49,12 @@ class MoviesController < ApplicationController
   end
 
   def update
-  	movie = Movie.find(params[:id])
-  	if movie.update(movie_params)
+  	@movie = Movie.find(params[:id])
+  	if @movie.update(movie_params)
   		flash[:notice] = "映像作品の感想を更新しました"
-  		redirect_to movie_path(movie.id)
+  		redirect_to movie_path(@movie.id)
   	else
+      @movie_categories = MovieCategory.all
   		render "edit"
   	end
   end

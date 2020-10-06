@@ -9,6 +9,11 @@ class UsersController < ApplicationController
   def show
   	@user = User.find(params[:id])
   	@books = @user.posts
+    # if @user != nil && @user.profile_image_id != nil
+    #   @image_url = "https://yourfavorites-resize.s3-ap-northeast-1.amazonaws.com/store/" + @user.profile_image_id + "-thumbnail."
+    # else
+    #   @image_url = "/assets/no_image-c7305210e2d30bf8f19461ca05a151bba6413a44a35124f673246160efefdc5e.jpg"
+    # end
   end
 
   def edit
@@ -16,10 +21,10 @@ class UsersController < ApplicationController
   end
 
   def update
-  	user = User.find(params[:id])
-  	if user.update(user_params)
+  	@user = User.find(params[:id])
+  	if @user.update(user_params)
   		flash[:notice] = "ユーザーの情報を更新しました"
-  		redirect_to user_path(user.id)
+  		redirect_to user_path(@user.id)
   	else
   		render "edit"
   	end
@@ -41,17 +46,21 @@ class UsersController < ApplicationController
 
   def user_posts
     @user = User.find(params[:id])
-    @posts = Post.where(user_id: params[:id]).page(params[:page]).reverse_order
+    @posts = @user.posts.page(params[:page])
 
     @sort = params[:sort]
     if @sort == 'new'
-      @posts = Post.page(params[:page]).order(created_at: :DESC)
+      @posts = @posts.page(params[:page]).order(created_at: :DESC)
     elsif @sort == 'old'
-      @posts = Post.page(params[:page]).order(created_at: :ASC)
+      @posts = @posts.page(params[:page]).order(created_at: :ASC)
     elsif @sort == 'favorite'
-      @posts = Post.left_joins(:favorites).group(:id).order(Arel.sql('COUNT(favorites.id)')).reverse_order.page(params[:page])
+      @posts = @posts.left_joins(:favorites).group(:id).order(Arel.sql('COUNT(favorites.id)')).reverse_order.page(params[:page])
+    elsif @sort == 'high_rating'
+      @posts = @posts.page(params[:page]).order(rating: :DESC)
+    elsif @sort == 'low_rating'
+      @posts = @posts.page(params[:page]).order(rating: :ASC)
     else
-     @posts = Post.page(params[:page]).reverse_order
+     @posts = @posts.page(params[:page]).reverse_order
     end
   end
 

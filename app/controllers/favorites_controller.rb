@@ -1,7 +1,7 @@
 class FavoritesController < ApplicationController
 
 	def show
-		@favorites = Favorite.where(user_id: params[:user_id]).page(params[:page]).per(10)
+		@favorites = Favorite.where(user_id: params[:user_id]).reverse_order.page(params[:page]).per(10)
 	end
 
 	def create
@@ -33,6 +33,14 @@ class FavoritesController < ApplicationController
 			favorite = current_user.favorites.find_by(post_id: @movie.id)
 			favorite.destroy
 			@check = "movie"
+		end
+		#favorites/_book(movie)_favorite(投稿の詳細ページ)からは"show"
+		#favorites/show(マイページのお気入り一覧)からは"mypage"のパラメーターを受け取り、結果を分岐。
+		case params[:request_from]
+		when 'show'
+			render :destroy
+		when 'mypage'
+			redirect_back(fallback_location: root_path)
 		end
 	end
 

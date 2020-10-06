@@ -11,8 +11,12 @@ class BooksController < ApplicationController
       @books = Book.page(params[:page]).order(created_at: :ASC)
     elsif @sort == 'favorite'
       @books = Book.left_joins(:favorites).group(:id).order(Arel.sql('COUNT(favorites.id)')).reverse_order.page(params[:page])
+    elsif @sort == 'high_rating'
+      @books = Book.page(params[:page]).order(rating: :DESC)
+    elsif @sort == 'low_rating'
+      @books = Book.page(params[:page]).order(rating: :ASC)
     else
-  	 @books = Book.page(params[:page]).reverse_order
+  	  @books = Book.page(params[:page]).reverse_order
     end
   end
 
@@ -45,11 +49,12 @@ class BooksController < ApplicationController
   end
 
   def update
-  	book = Book.find(params[:id])
-  	if book.update(book_params)
+  	@book = Book.find(params[:id])
+  	if @book.update(book_params)
   		flash[:notice] = "本の感想を更新しました"
-  		redirect_to book_path(book.id)
+  		redirect_to book_path(@book.id)
   	else
+      @book_categories = BookCategory.all
   		render "edit"
   	end
   end

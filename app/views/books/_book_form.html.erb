@@ -30,14 +30,16 @@
 </div>
 
 <script>
+
 document.addEventListener("turbolinks:load", function(){
 	$('#star').raty({
 	  size     : 36,
-	  starHalf: '/assets/star-half.png',
-	  starOff: '/assets/star-off.png',
-	  starOn : '/assets/star-on.png',
+	  starHalf: "<%= image_path('star-half.png') %>",
+	  starOff: "<%= image_path('star-off.png') %>",
+	  starOn : "<%= image_path('star-on.png') %>",
 	  scoreName: 'book[rating]',
 	  half: true,
+	  score: <%= book.rating || 0 %>
 	});
 })
 </script>

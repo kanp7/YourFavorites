@@ -44,6 +44,7 @@ MovieGenre.create!([
 	])
 
 30.times do |n|
+	sleep 1
 	Book.create!(
 		user_id: "1",
 		category_id: "1",
@@ -56,6 +57,7 @@ end
 
 
 30.times do |n|
+	sleep 1
 	Movie.create!(
 		user_id: "2",
 		category_id: "6",

@@ -1,48 +1,17 @@
-<h2><%= @user.name %>さんのページ</h2>
-<div class="col-xs-4">
-	<%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg',fallback: "no_image.jpg",size: '100x100', class: "img-circle" %>
-	<table>
-		<tbody>
-			<tr>
-				<th>ユーザー名</th>
-				<th><%= @user.name %></th>
-			</tr>
-			<tr>
-				<th><%= link_to @user.following.count, following_user_path(@user), class: "follow_count_#{@user.id}" %> フォロー&emsp;</th>
-				<th><%= link_to @user.followers.count, followers_user_path(@user), class: "follower_count_#{@user.id}" %> フォロワー</th>
-			</tr>
-			<tr>
-				<th><%= link_to "お気に入り", user_favorites_path(@user) %></th>
-			</tr>
-			<tr>
-				<th><%= link_to "投稿一覧",user_posts_user_path(@user) %></th>
-			</tr>
-		</tbody>
-	</table>
-</div>
+<h2><b><%= @user.name %></b> さんのページ</h2>
+<div class="mypage_body">
 
-<div class="col-xs-8">
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			<div class="text-center">自己紹介文</div>
-		</div>
-		<div class="panel-body">
-			<%=  simple_format(@user.introduction) %>
-		</div>
+<div class="col-md-3">
+	<div class="profile_icon">
+		<%= attachment_image_tag @user, :profile_image, :fill, 150, 150, format: 'jpeg',fallback: "no_image.jpg",size: '150x150', class: "img-circle" %>
 	</div>
-</div>
 
-<div class="col-xs-12">
+	<%#= image_tag @image_url, class: "img-circle" %>
+
 	<% if user_signed_in? %>
 		<% if @user.id == current_user.id %>
 			<div class="mypage_btn">
 				<%= link_to "プロフィール編集", edit_user_path(@user), class: "btn btn-primary" %>
-			</div>
-			<div class="mypage_btn">
-				<%= link_to "本の感想を投稿", new_book_path, class: "btn btn-primary" %>
-			</div>
-			<div class="mypage_btn">
-				<%= link_to "映像作品の感想を投稿", new_movie_path, class: "btn btn-primary" %>
 			</div>
 		<% end %>
 	<% end %>
@@ -52,3 +21,64 @@
 	</div>
 </div>
 
+<div class="col-md-5">
+	<div class="introduction-header text-center">
+		<p>自己紹介文</p>
+	</div>
+	<div class="introduction">
+		<p><%=  simple_format(@user.introduction) %></p>
+	</div>
+</div>
+
+<div class="col-md-4">
+	<% if user_signed_in? %>
+		<% if @user.id == current_user.id %>
+			<div class="post_form text-center">
+				<h4>感想を投稿する</h4>
+				<div class="mypage_btn">
+					<%= link_to "本の感想を投稿", new_book_path, class: "btn btn-primary" %>
+				</div>
+				<div class="mypage_btn">
+					<%= link_to "映像作品の感想を投稿", new_movie_path, class: "btn btn-primary" %>
+				</div>
+			</div>
+		<% end %>
+	<% end %>
+</div>
+
+
+
+<div class="col-md-12">
+	<div class="under_menu">
+		<ul>
+			<div class="col-xs-3">
+				<li><%= link_to following_user_path(@user) do %>
+						<i class="fa fa-group"></i><br>
+						<span class="follow_count_<%= @user.id %>"> <%= @user.following.count %></span> フォロー
+					<% end %>
+				</li>
+			</div>
+			<div class="col-xs-3">
+				<li><%= link_to followers_user_path(@user) do %>
+						<i class="fa fa-users"></i><br>
+						<span class="follower_count_<%= @user.id %>"> <%= @user.followers.count %></span> フォロワー
+					<% end %>
+				</li>
+			</div>
+			<div class="col-xs-3">
+				<li><%= link_to user_favorites_path(@user) do %>
+						<i class="glyphicon glyphicon-star"></i><br>お気に入り
+					<% end %>
+				</li>
+			</div>
+			<div class="col-xs-3">
+				<li><%= link_to user_posts_user_path(@user) do %>
+						<i class="glyphicon glyphicon-pencil"></i><br>投稿一覧
+					<% end %>
+				</li>
+			</div>
+		</ul>
+	</div>
+</div>
+
+</div>
