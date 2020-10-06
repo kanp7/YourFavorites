@@ -37,6 +37,7 @@
 ・AWS(EC2,RDS)  
 ・Bootstrap,jQuery  
 ## 設計書
+(https://user-images.githubusercontent.com/61006871/95155388-00530e80-07cf-11eb-83b7-e93331b05d9f.jpg)
 
 ### 機能一覧
 <https://docs.google.com/spreadsheets/d/1oAcagboSqszoLOSVnDQ9la8bcsMyKfhrwMMS5Xd_CU8/edit?usp=sharing>
